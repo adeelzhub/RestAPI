@@ -6,19 +6,28 @@ exports.addBreed = async(req, res)=>{
         const cat = new Cat(req.body);
         console.log(cat);
         await cat.save();
-        res.status(200).send({message:"Successfully Added"})
+        res.status(200).send({message:"Successfully Added"});
     }catch(error){
-        res.status(501).send({err: error})
+        res.status(501).send({err: error});
     }
-}
+};
 exports.listCats = async(req, res)=>{
     try{
         const catList = await Cat.find({});
-        res.status(200).send(catList)
+        res.status(200).send(catList);
     }catch(error){
-        res.status(500).send(error)
+        res.status(500).send(error);
     }
-}
+};
+exports.findCat = async(req, res)=>{
+    try{
+        const cat = await Cat.findOne({breed: req.params.breed});
+        res.status(200).send(cat);
+        console.log("line 25 executed")
+    }catch(error){
+        res.status(503).send(error);
+    }
+};
 exports.updateCat = async (req, res)=>{
     try{
         if(req.body.numbers){
@@ -30,16 +39,16 @@ exports.updateCat = async (req, res)=>{
         }
         
     }catch(error){
-        res.status(500).send(error)
+        res.status(500).send(error);
     }
 };
 
 exports.deleteCat = async(req, res)=>{
     try{
-        console.log("line 38 passed")
+        console.log("line 38 passed");
         await Cat.deleteOne({breed: req.params.breed});
-        res.status(200).send("Deleted Successfully")
+        res.status(200).send("Deleted Successfully");
     }catch(error){
-       res.status(500).send(error)
+       res.status(500).send(error);
     }
 };
