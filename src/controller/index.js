@@ -21,9 +21,14 @@ exports.listCats = async(req, res)=>{
 };
 exports.findCat = async(req, res)=>{
     try{
-        const cat = await Cat.findOne({breed: req.params.breed});
-        res.status(200).send(cat);
-        console.log("line 25 executed")
+        const catExists = await Cat.exists({breed: req.params.breed});
+        if(catExists){
+            const cat = await Cat.findOne({breed: req.params.breed});
+            res.status(200).send(cat);
+        }else{
+            res.status(201).send({message: "No record found"});
+        }
+        
     }catch(error){
         res.status(503).send(error);
     }

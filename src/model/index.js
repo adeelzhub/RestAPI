@@ -18,6 +18,22 @@ const catSchema = mongoose.Schema({
 
 });
 
-const Cat = mongoose.model("Cat", catSchema);
+const userSchema = mongoose.Schema({
+    username:{
+        type: String,
+        default: "admin"
+    },
+    password:{
+        type:String,
+        required: true
+    }
+});
 
-module.exports = Cat;
+
+const Cat = mongoose.model("Cat", catSchema);
+const User = mongoose.model("User", userSchema)
+
+module.exports = {
+    Cat,
+    User
+}
