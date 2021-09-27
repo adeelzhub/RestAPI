@@ -1,4 +1,5 @@
-const Cat = require("../model");
+const{Cat} = require("../model");
+const bcrypt = require("bcryptjs");
 
 exports.addBreed = async(req, res)=>{
     try{
@@ -16,7 +17,7 @@ exports.listCats = async(req, res)=>{
         const catList = await Cat.find({});
         res.status(200).send(catList);
     }catch(error){
-        res.status(500).send(error);
+        res.status(505).send(error);
     }
 };
 exports.findCat = async(req, res)=>{

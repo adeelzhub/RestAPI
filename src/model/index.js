@@ -14,14 +14,14 @@ const catSchema = mongoose.Schema({
         type:Number,
         default: 0
     }
-
-
 });
+const Cat = mongoose.model("Cat", catSchema);
 
 const userSchema = mongoose.Schema({
     username:{
         type: String,
-        default: "admin"
+        required: true,
+        unique: true
     },
     password:{
         type:String,
@@ -30,10 +30,13 @@ const userSchema = mongoose.Schema({
 });
 
 
-const Cat = mongoose.model("Cat", catSchema);
+
 const User = mongoose.model("User", userSchema)
 
 module.exports = {
     Cat,
     User
-}
+};
+
+// module.exports = Cat;
+// module.exports = User;
