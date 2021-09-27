@@ -51,7 +51,6 @@ exports.updateCat = async (req, res)=>{
 
 exports.deleteCat = async(req, res)=>{
     try{
-        console.log("line 38 passed");
         await Cat.deleteOne({breed: req.params.breed});
         res.status(200).send("Deleted Successfully");
     }catch(error){
