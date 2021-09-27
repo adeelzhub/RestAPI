@@ -37,6 +37,3 @@ module.exports = {
     Cat,
     User
 };
-
-// module.exports = Cat;
-// module.exports = User;

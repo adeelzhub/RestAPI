@@ -1,11 +1,10 @@
 const{Cat} = require("../model");
-const bcrypt = require("bcryptjs");
+
 
 exports.addBreed = async(req, res)=>{
     try{
         console.log("addBreed invoked")
         const cat = new Cat(req.body);
-        console.log(cat);
         await cat.save();
         res.status(200).send({message:"Successfully Added"});
     }catch(error){
